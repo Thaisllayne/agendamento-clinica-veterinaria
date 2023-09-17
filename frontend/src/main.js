@@ -41,6 +41,18 @@ mainForm.addEventListener('submit', async (event) => {
 
     console.log('responsavel', idResponsavel);
     console.log('pet', idPet);
+
+    if(idPet.retorno){
+
+        console.log('funcionou')
+
+        const toastElList = document.querySelectorAll('.toast')
+        const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl, {}))
+        toastList.forEach(toast => toast.show());
+    
+        mainForm.reset();
+    }
+
 });
 
 selectEspecie?.addEventListener('change', async(event) => {
@@ -65,4 +77,4 @@ selectEspecie?.addEventListener('change', async(event) => {
     });
 
     selectRaca.removeAttribute('disabled');
-})
+});
