@@ -22,7 +22,9 @@ app.post('/pet', async (req, res) => {
       id_responsavel: req.body.id_responsavel,
     });
 
-  res.send({});
+  res.send({
+    retorno: true
+  });
 });
 
 app.post('/responsavel', async (req, res) => {
