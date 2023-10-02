@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/pet', async (req, res) => {
-  await knex('pet')
+  const [ lastInsertedId ] = await knex('pet')
     .insert({
       nome: req.body.nome,
       data_nascimento: req.body.data_nascimento, 
@@ -23,7 +23,8 @@ app.post('/pet', async (req, res) => {
     });
 
   res.send({
-    retorno: true
+    retorno: true,
+    id: lastInsertedId
   });
 });
 
@@ -53,6 +54,11 @@ app.get('/responsavel', async (req, res) => {
   res.send(responsaveis);
 });
 
+app.get('/servicos', async (req, res) => {
+  const servicos = await knex('servico');
+  res.send(servicos);
+});
+
 app.get('/raca/:idRaca', async (req, res) => {
   if(!req.params.idRaca){
     res.sendStatus(400);
@@ -63,6 +69,18 @@ app.get('/raca/:idRaca', async (req, res) => {
 
   res.send(racas);
 });
+
+app.post('/agendamento', async (req, res) => {
+  const [ lastInsertedId ] = await knex('agenda').insert({
+    id_servico: req.body.idServico,
+    id_pet: req.body.idPet,
+    agendamento: req.body.agendamento,
+    observacao: req.body.observacao || "",
+  });
+  
+  res.send({ id: lastInsertedId });
+});
+
 
 app.listen(process.env.BACKEND_PORT, () => {
   console.log(`Example app listening on port ${process.env.BACKEND_PORT}`);
