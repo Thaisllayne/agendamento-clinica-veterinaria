@@ -2,6 +2,7 @@ import api from './service/api.js';
 
 const mainForm = document.getElementById('mainForm');
 const selectEspecie = document.querySelector('[name="especie"]');
+const selectServico = document.querySelector('[name="servico"]');
 const selectRaca = document.querySelector('[name="raca"]');
 
 const getSelectedOptionValue = (select) => {
@@ -51,6 +52,9 @@ mainForm.addEventListener('submit', async (event) => {
         toastList.forEach(toast => toast.show());
     
         mainForm.reset();
+        setTimeout(() => {
+            window.location.href = `http://127.0.0.1:5500/src/agendamento.html?petid=${idPet.id}`;
+        }, 2000);
     }
 
 });
