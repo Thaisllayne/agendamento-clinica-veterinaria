@@ -21,12 +21,22 @@ mainForm.addEventListener('submit', async (event) => {
         idPet,
         observacao
     });
-    // const response = await api.post('/agendamento', {
-    //     idServico,
-    //     idPet,
-    //     observacao
-    // });
+    
+    const response = await api.post('/agendamento', {
+        idServico,
+        idPet,
+        observacao
+    });
 
+    console.log(response);
+    if(response){
+        const toastElList = document.querySelectorAll('.toast')
+        const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl, {}))
+        toastList.forEach(toast => toast.show());
+
+        const mainForm = document.getElementById('mainForm');
+        mainForm.reset();
+    }
 });
 
 window.addEventListener('load', async(event) => {
