@@ -2,6 +2,8 @@ import api from './service/api.js';
 
 const mainForm = document.getElementById('mainForm');
 const selectServico = document.querySelector('[name="servico"]');
+const data = document.getElementById('data');
+const hora = document.getElementById('hora');
 const valorServico = document.getElementById('valor');
 
 const getSelectedOptionValue = (select) => {
@@ -15,16 +17,20 @@ mainForm.addEventListener('submit', async (event) => {
     const observacao = document.getElementById('observacao').value;
     const urlParams = new URLSearchParams(window.location.search);
     const idPet = urlParams.get('petid');
+   
+    const agendamento = `${data.value} ${hora.value}:00`;
 
     console.log({
         idServico,
         idPet,
+        agendamento,
         observacao
     });
-    
+
     const response = await api.post('/agendamento', {
         idServico,
         idPet,
+        agendamento: agendamento.toString(),
         observacao
     });
 
