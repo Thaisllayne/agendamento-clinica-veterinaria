@@ -27,7 +27,7 @@ mainForm.addEventListener('submit', async (event) => {
         observacao
     });
 
-    const response = await api.post('/agendamento', {
+    const response = await api.post('/agendamentos', {
         idServico,
         idPet,
         agendamento: agendamento.toString(),

@@ -70,7 +70,7 @@ app.get('/raca/:idRaca', async (req, res) => {
   res.send(racas);
 });
 
-app.post('/agendamento', async (req, res) => {
+app.post('/agendamentos', async (req, res) => {
   const [ lastInsertedId ] = await knex('agenda').insert({
     id_servico: req.body.idServico,
     id_pet: req.body.idPet,
@@ -81,6 +81,10 @@ app.post('/agendamento', async (req, res) => {
   res.send({ id: lastInsertedId });
 });
 
+app.get('/agendamentos', async (req, res) => {
+  const servicos = await knex('servico');
+  res.send(servicos);
+});
 
 app.listen(process.env.BACKEND_PORT, () => {
   console.log(`Example app listening on port ${process.env.BACKEND_PORT}`);
