@@ -53,7 +53,7 @@ mainForm.addEventListener('submit', async (event) => {
     
         mainForm.reset();
         setTimeout(() => {
-            window.location.href = `http://127.0.0.1:5500/src/agendamento.html?petid=${idPet.id}`;
+            window.location.href = `http://127.0.0.1:5500/frontend/src/agendamentos/create.html?petid=${idPet.id}`;
         }, 2000);
     }
 

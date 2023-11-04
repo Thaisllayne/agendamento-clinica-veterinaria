@@ -1,4 +1,4 @@
-import api from './service/api.js';
+import api from '../../service/api.js';
 
 const mainForm = document.getElementById('mainForm');
 const selectServico = document.querySelector('[name="servico"]');
@@ -43,7 +43,7 @@ mainForm.addEventListener('submit', async (event) => {
         const mainForm = document.getElementById('mainForm');
         mainForm.reset();
         setTimeout(() => {
-            window.location.href = "http://127.0.0.1:5500/src/agendamentos/index.html";
+            window.location.href = "http://127.0.0.1:5500/frontend/src/agendamentos/index.html";
         }, 2000);
     }
 });

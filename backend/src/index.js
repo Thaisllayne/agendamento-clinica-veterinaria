@@ -82,8 +82,8 @@ app.post('/agendamentos', async (req, res) => {
 });
 
 app.get('/agendamentos', async (req, res) => {
-  const servicos = await knex('servico');
-  res.send(servicos);
+  const agendamentos = await knex('agenda');
+  res.send(agendamentos);
 });
 
 app.listen(process.env.BACKEND_PORT, () => {
