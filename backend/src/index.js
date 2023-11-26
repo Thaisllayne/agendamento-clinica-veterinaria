@@ -86,6 +86,12 @@ app.get('/agendamentos', async (req, res) => {
   res.send(agendamentos);
 });
 
+app.get('/agendamentos/:id/cancelar', async (req, res) => {
+  const id = req.params.id;
+  await knex('agenda').where('id', id).del();
+  res.sendStatus(204);
+});
+
 app.listen(process.env.BACKEND_PORT, () => {
   console.log(`Example app listening on port ${process.env.BACKEND_PORT}`);
 });

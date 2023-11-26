@@ -17,6 +17,7 @@ const request = async (method, endpoint, data={}) => {
         body: method === 'GET' ? null : JSON.stringify(data)
     });
 
+    if(response.status === 204) return;
     return response.json();
 }
 
