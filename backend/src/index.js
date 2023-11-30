@@ -86,6 +86,19 @@ app.get('/agendamentos', async (req, res) => {
   res.send(agendamentos);
 });
 
+app.get('/agendamentos/:id', async (req, res) => {
+  const id = req.params.id;
+  const [agendamento] = await knex('agenda').where('id', id);
+  res.send(agendamento);
+});
+
+app.put('/agendamentos/:id', async (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  await knex('agenda').where('id', id).update(body);
+  res.sendStatus(204);
+});
+
 app.get('/agendamentos/:id/cancelar', async (req, res) => {
   const id = req.params.id;
   await knex('agenda').where('id', id).del();

@@ -6,6 +6,10 @@ const post = async (endpoint, data) => {
     return await request('POST', endpoint, data);
 }
 
+const put = async (endpoint, data) => {
+    return await request('PUT', endpoint, data);
+}
+
 const request = async (method, endpoint, data={}) => {
     const baseURL = 'http://localhost:3000';
     const response = await fetch(baseURL + endpoint, {
@@ -23,5 +27,6 @@ const request = async (method, endpoint, data={}) => {
 
 export default {
     post,
-    get
+    get,
+    put
 }

@@ -9,6 +9,7 @@ window.addEventListener('load', async(event) => {
     console.log(agendamentos);  
     const table = $('#myTable').DataTable({
         data: agendamentos,
+        order: [[2, 'asc']],
         columns: [
             { data: 'id_servico' },
             { data: 'observacao' },
@@ -24,9 +25,12 @@ window.addEventListener('load', async(event) => {
                 render: function ( data, type, row ) {
                     const container = document.createElement("div");
                     const deleteButton = document.createElement("button");
+                    deleteButton.classList.add('btn', 'btn-danger', 'mx-2');
                     deleteButton.textContent = 'Cancelar';
                     deleteButton.dataset['delete'] = data;
-                    const editButton = document.createElement("button");
+                    const editButton = document.createElement("a");
+                    editButton.setAttribute('href', `edit.html?id=${data}`);
+                    editButton.classList.add('btn', 'btn-warning');
                     editButton.textContent = 'Editar';
                     container.appendChild(deleteButton);
                     container.appendChild(editButton);
