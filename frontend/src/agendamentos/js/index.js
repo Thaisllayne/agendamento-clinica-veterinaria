@@ -9,8 +9,20 @@ window.addEventListener('load', async(event) => {
     console.log(agendamentos);  
     const table = $('#myTable').DataTable({
         data: agendamentos,
-        order: [[2, 'asc']],
+        order: [[4, 'asc']],
         columns: [
+            { 
+                data: 'nome',
+                render: function(data, type, row){
+                    return data.charAt(0).toUpperCase() + data.slice(1);
+                }
+            },
+            { 
+                data: 'telefone' ,
+                render: function(data, type, row){
+                    return `(${row.ddd}) ${data}`;
+                }
+            },
             { data: 'id_servico' },
             { data: 'observacao' },
             { 

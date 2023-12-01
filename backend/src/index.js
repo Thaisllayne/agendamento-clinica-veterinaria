@@ -82,7 +82,18 @@ app.post('/agendamentos', async (req, res) => {
 });
 
 app.get('/agendamentos', async (req, res) => {
-  const agendamentos = await knex('agenda');
+  const agendamentos = await knex.from('agenda')
+    .join('pet', 'agenda.id_pet', 'pet.id')
+    .join('responsavel', 'pet.id_responsavel', 'responsavel.id')
+    .select(
+      'agenda.id',
+      'agenda.id_servico', 
+      'agenda.observacao', 
+      'agenda.agendamento', 
+      'pet.nome',
+      'responsavel.ddd',
+      'responsavel.telefone'
+    );
   res.send(agendamentos);
 });
 
